@@ -46,13 +46,17 @@
         const path = this.$electron.remote.dialog.showSaveDialog({
           filters: [{name: 'Database', extensions: ['db']}]
         })
+        console.log(path);
         if (path) {
+          console.log("Exporting Started");
           this.exporting = true
+          console.log(this.$store);
           this.$store.dispatch('export_', {path: path}).then( () => {
             this.exporting = false
           }).then(() => {
             this.success = true
           }).catch((e) => {
+            console.log(e);
             this.errorText = e.toString()
             this.exporting = false
             this.error = true

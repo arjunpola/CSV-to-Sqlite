@@ -61,12 +61,12 @@ const mutations = {
 const actions = {
   loadColumns(context, {id}) {
     return new Promise( (resolve, reject) => {
-      const path = state.tables[id].path
+      const path = this.getters.tables[id].path
       this.$firstline(path).then((data) => {
         let columns = {}
         let columnNames = data.replace(/"/g, "").split(',')
         for (const name of columnNames) {
-          columns[name] = state.columns[id][name] ? state.columns[id][name] : 'text'
+          columns[name] = this.state.Tables.columns[id][name] ? this.state.Tables.columns[id][name] : 'text'
         }
         context.commit('UPDATE_COLUMNS', {id: id, columns: columns})
         resolve()
@@ -74,6 +74,7 @@ const actions = {
     })
   },
   export_ (context, {path}) {
+    console.log(path);
     let db = new this.$sqlite3.Database(path)
     return new Promise( (resolve, reject) => {
         let tables = this.getters.tables
