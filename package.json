@@ -52,7 +52,7 @@
         }
     },
     "dependencies": {
-        "fast-csv": "^2.4.1",
+        "fast-csv": "^4.3.6",
         "firstline": "^2.0.2",
         "hoek": "^5.0.3",
         "node-pre-gyp": "^0.10.3",
